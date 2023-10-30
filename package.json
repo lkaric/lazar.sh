@@ -7,6 +7,7 @@
     "email": "hi@lazar.sh",
     "url": "https://lazar.sh"
   },
+  "packageManager": "pnpm@8.10.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
