@@ -21,6 +21,7 @@ const Header: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-orange-600 transition-colors p-2"
+            aria-label="Linkedin"
           >
             <RiLinkedinLine />
           </a>
@@ -31,6 +32,7 @@ const Header: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-orange-600 transition-colors p-2"
+            aria-label="Github"
           >
             <RiGithubLine />
           </a>
@@ -39,6 +41,7 @@ const Header: React.FC = () => {
           <Link
             href="/contact"
             className="hover:text-orange-600 transition-colors p-2"
+            aria-label="Contact"
           >
             <MdOutlineAlternateEmail />
           </Link>
