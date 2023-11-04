@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 
 import gsap from 'gsap';
 
@@ -9,54 +9,56 @@ interface MagnetizeProps {
 }
 
 const Magnetize: React.FC<MagnetizeProps> = ({ children }) => {
-  const magnetic = useRef<null | any>(null);
+  const magnetic = useRef<HTMLElement | any>(null);
 
-  useEffect(() => {
-    const xTo = gsap.quickTo(magnetic.current, 'x', {
-      duration: 1,
-      ease: 'elastic.out(1, 0.3)'
-    });
+  const toAxis = useCallback(
+    (ref: React.MutableRefObject<HTMLElement | any>, axis: 'x' | 'y') =>
+      gsap.quickTo(ref.current, axis, {
+        duration: 1,
+        ease: 'elastic.out(1, 0.3)'
+      }),
+    []
+  );
 
-    const yTo = gsap.quickTo(magnetic.current, 'y', {
-      duration: 1,
-      ease: 'elastic.out(1, 0.3)'
-    });
-
-    const mouseMove = (e: any) => {
+  const mouseMove = useCallback(
+    (ref: React.MutableRefObject<HTMLElement | any>, e: any) => {
       const { clientX, clientY } = e;
-
-      const { height, width, left, top } =
-        magnetic.current.getBoundingClientRect();
+      const { height, width, left, top } = ref.current.getBoundingClientRect();
 
       const x = clientX - (left + width / 2);
-
       const y = clientY - (top + height / 2);
 
-      xTo(x);
+      toAxis(ref, 'x')(x);
+      toAxis(ref, 'y')(y);
+    },
+    [toAxis]
+  );
 
-      yTo(y);
-    };
+  const mouseLeave = useCallback(
+    (ref: React.MutableRefObject<HTMLElement | any>, e: any) => {
+      gsap.to(ref.current, { x: 0, duration: 1 });
+      gsap.to(ref.current, { y: 0, duration: 1 });
 
-    const mouseLeave = (e: any) => {
-      gsap.to(magnetic.current, { x: 0, duration: 1 });
+      toAxis(ref, 'x')(0);
+      toAxis(ref, 'y')(0);
+    },
+    [toAxis]
+  );
 
-      gsap.to(magnetic.current, { y: 0, duration: 1 });
+  useEffect(() => {
+    const element = magnetic;
 
-      xTo(0);
+    const mouseMoveHandler = (e: any) => mouseMove(element, e);
+    const mouseLeaveHandler = (e: any) => mouseLeave(element, e);
 
-      yTo(0);
-    };
-
-    magnetic.current.addEventListener('mousemove', mouseMove);
-
-    magnetic.current.addEventListener('mouseleave', mouseLeave);
+    element.current.addEventListener('mousemove', mouseMoveHandler);
+    element.current.addEventListener('mouseleave', mouseLeaveHandler);
 
     return () => {
-      magnetic.current.removeEventListener('mousemove', mouseMove);
-
-      magnetic.current.removeEventListener('mouseleave', mouseLeave);
+      element.current.removeEventListener('mousemove', mouseMoveHandler);
+      element.current.removeEventListener('mouseleave', mouseLeaveHandler);
     };
-  }, []);
+  }, [mouseLeave, mouseMove, toAxis]);
 
   return React.cloneElement(children, { ref: magnetic });
 };
