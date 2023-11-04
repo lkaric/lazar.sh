@@ -8,13 +8,12 @@ import '../styles/global.css';
 import type { Metadata } from 'next';
 
 const montserrat = Montserrat({
-  subsets: ['latin', 'latin-ext'],
+  subsets: ['latin'],
   variable: '--font-montserrat'
 });
 
 const sometype_mono = Sometype_Mono({
   subsets: ['latin'],
-
   variable: '--font-sometype_mono'
 });
 
@@ -42,6 +41,14 @@ const RootLayout = ({ children }: RootLayoutProps) => {
 
   return (
     <html lang="en" className="dark">
+      <head>
+        <link
+          rel="icon"
+          href="/icon?<generated>"
+          type="image/png"
+          sizes="32x32"
+        />
+      </head>
       <body className={bodyClass}>
         <Header />
         <main className="row-start-2 col-start-2 col-end-12">{children}</main>

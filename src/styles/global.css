@@ -5,4 +5,5 @@
 html {
   min-width: 100vw;
   min-height: 100vh;
+  font-family: var(--font-montserrat);
 }
