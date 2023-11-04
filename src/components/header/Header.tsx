@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import { RiGithubLine, RiLinkedinLine } from 'react-icons/ri';
+import { MdOutlineAlternateEmail } from 'react-icons/md';
 
 import { Magnetize } from '../magnetize';
 
@@ -33,6 +34,14 @@ const Header: React.FC = () => {
           >
             <RiGithubLine />
           </a>
+        </Magnetize>
+        <Magnetize>
+          <Link
+            href="/contact"
+            className="hover:text-orange-600 transition-colors p-2"
+          >
+            <MdOutlineAlternateEmail />
+          </Link>
         </Magnetize>
       </div>
     </header>
