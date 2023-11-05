@@ -1,3 +1,5 @@
+'use client';
+
 import { RiSearchLine } from 'react-icons/ri';
 
 interface SearchProps {}

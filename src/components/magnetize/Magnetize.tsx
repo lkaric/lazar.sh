@@ -55,8 +55,10 @@ const Magnetize: React.FC<MagnetizeProps> = ({ children }) => {
     element.current.addEventListener('mouseleave', mouseLeaveHandler);
 
     return () => {
-      element.current.removeEventListener('mousemove', mouseMoveHandler);
-      element.current.removeEventListener('mouseleave', mouseLeaveHandler);
+      console.log('ELEMENT', element);
+
+      element.current?.removeEventListener('mousemove', mouseMoveHandler);
+      element.current?.removeEventListener('mouseleave', mouseLeaveHandler);
     };
   }, [mouseLeave, mouseMove, toAxis]);
 

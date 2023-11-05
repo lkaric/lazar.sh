@@ -1,11 +1,24 @@
-import { Post } from '..';
+'use client';
 
-import { postService } from '../../services';
+import { use, useEffect, useState } from 'react';
+import { Post } from '../post';
 
-const PostFeed: React.FC = async () => {
-  const blogs = await postService.getAll();
+import type { GetAllPostResponse } from '../../services';
 
-  return blogs && blogs.data.map(post => <Post {...post} key={post.id} />);
+interface PostFeedProps {
+  postsPromise: Promise<GetAllPostResponse>;
+}
+
+const PostFeed: React.FC<PostFeedProps> = ({ postsPromise }) => {
+  const response = use(postsPromise);
+
+  const [posts, setPosts] = useState<GetAllPostResponse | null>(null);
+
+  useEffect(() => {
+    setPosts(response);
+  }, [response]);
+
+  return posts && posts?.data.map(post => <Post {...post} key={post.id} />);
 };
 
 export { PostFeed };
