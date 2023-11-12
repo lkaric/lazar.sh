@@ -49,6 +49,10 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           type="image/png"
           sizes="32x32"
         />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dark.min.css"
+        />
       </head>
       <body className={bodyClass}>
         <Header />

@@ -12,7 +12,9 @@ const Home: NextPage = () => {
     <>
       <div className="grid lg:grid-cols-6">
         <Search />
-        <Suspense fallback={<p>Loading PostFeed</p>}>
+        <Suspense
+          fallback={<p className="col-start-2 col-end-6">Loading PostFeed</p>}
+        >
           <PostFeed postsPromise={postsPromise} />
         </Suspense>
       </div>

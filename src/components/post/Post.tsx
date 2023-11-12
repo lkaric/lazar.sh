@@ -16,7 +16,7 @@ const Post: React.FC<PostProps> = ({
 
   return (
     <Link
-      href={`/post/${slug}`}
+      href={`/posts/${slug}`}
       className="col-start-2 col-end-6 group/post p-2"
     >
       <div className="flex items-center">

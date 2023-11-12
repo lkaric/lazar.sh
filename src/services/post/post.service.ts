@@ -1,3 +1,5 @@
+import qs from 'qs';
+
 import type {
   GetAllPostResponse,
   PostEntity,
@@ -5,21 +7,56 @@ import type {
   PostRawResponse
 } from './post.model';
 
-class PostService {
-  public async getAll(): Promise<GetAllPostResponse> {
-    const options: RequestInit = {
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_TOKEN}`
+import { Service } from '../base.service';
+import { redirect } from 'next/dist/server/api-utils';
+
+class PostService extends Service {
+  constructor() {
+    super();
+  }
+
+  public async getBySlug(slug: string): Promise<PostEntity | null> {
+    const query = {
+      locale: 'en',
+      filters: {
+        Slug: {
+          $eq: slug
+        }
       }
     };
 
-    const isPreview = process.env.APPLICATION_PREVIEW;
+    const endpoint = this.endpointFactory(`/api/posts`, query);
 
-    const uri = `${process.env.STRAPI_BASE_URI}/api/posts${
-      isPreview ? '?publicationState=preview' : ''
-    }`;
+    const res = await fetch(endpoint, this.options);
 
-    const res = await fetch(uri, options);
+    const response: PostRawResponse = await res.json();
+
+    if (!response?.data?.[0]) {
+      return null;
+    }
+
+    return PostService.toPost(response.data[0]);
+  }
+
+  public async getSeoMetadata(
+    slug: string
+  ): Promise<{ title?: string; description?: string | null }> {
+    const post = await this.getBySlug(slug);
+
+    return {
+      title: post?.title ?? 'whoops, post not found',
+      description: post?.summary ?? ''
+    };
+  }
+
+  public async getAll(): Promise<GetAllPostResponse> {
+    const query = {
+      locale: ['en']
+    };
+
+    const endpoint = this.endpointFactory('/api/posts', query);
+
+    const res = await fetch(endpoint, this.options);
 
     const response: PostRawResponse = await res.json();
 
