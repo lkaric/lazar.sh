@@ -16,9 +16,7 @@ const words = [
   'contact',
   'hi',
   'discuss',
-  'will.i.am',
   'xyz',
-  'hear.me.out',
   'feel',
   'help',
   'reach'
@@ -63,7 +61,7 @@ const Contact: NextPage = () => {
 
   return (
     <div className="flex flex-col w-full h-full justify-center items-center">
-      <div className="text-4xl font-medium tracking-widest">
+      <div className="sm:text-4xl text-3xl font-medium tracking-widest">
         <a href={`mailto:${randomWord}@lazar.sh`}>
           <span className="border-b-2 dark:border-zinc-500 border-dashed dark:text-zinc-400">
             {randomWord}

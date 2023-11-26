@@ -31,7 +31,6 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   const bodyClass = clsx(
     montserrat.className,
     sometype_mono.variable,
-    'min-h-screen',
     'grid',
     'gap-1',
     'grid-cols-12',
