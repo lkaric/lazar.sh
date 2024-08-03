@@ -7,39 +7,40 @@
     "email": "hi@lazar.sh",
     "url": "https://lazar.sh"
   },
-  "packageManager": "pnpm@8.10.0",
+  "packageManager": "pnpm@9.6.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
-    "clsx": "^2.0.0",
-    "gsap": "^3.12.2",
-    "next": "14.0.0",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-icons": "^4.11.0"
+    "@vercel/speed-insights": "^1.0.12",
+    "clsx": "^2.1.1",
+    "gsap": "^3.12.5",
+    "next": "14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.2.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.2.0",
-    "@commitlint/config-conventional": "^18.1.0",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10.4.16",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.0.2",
-    "postcss": "^8.4.31",
-    "prettier": "^3.0.3",
-    "sass": "^1.69.5",
-    "tailwindcss": "^3.3.5",
-    "typescript": "^5"
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@types/node": "^22.1.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.5",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.8",
+    "postcss": "^8.4.40",
+    "prettier": "^3.3.3",
+    "sass": "^1.77.8",
+    "tailwindcss": "^3.4.7",
+    "typescript": "^5.5.4"
   }
 }

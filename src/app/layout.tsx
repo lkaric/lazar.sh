@@ -1,4 +1,5 @@
 import { Montserrat, Sometype_Mono } from 'next/font/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import clsx from 'clsx';
 
 import { Footer, Header } from '../components';
@@ -53,6 +54,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
         <Header />
         <main className="row-start-2 col-start-2 col-end-12">{children}</main>
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   );
