@@ -12,7 +12,7 @@ const Magnetize: React.FC<MagnetizeProps> = ({ children }) => {
   const magnetic = useRef<HTMLElement | any>(null);
 
   const toAxis = useCallback(
-    (ref: React.MutableRefObject<HTMLElement | any>, axis: 'x' | 'y') =>
+    (ref: React.RefObject<HTMLElement | any>, axis: 'x' | 'y') =>
       gsap.quickTo(ref.current, axis, {
         duration: 1,
         ease: 'elastic.out(1, 0.3)'
@@ -21,7 +21,7 @@ const Magnetize: React.FC<MagnetizeProps> = ({ children }) => {
   );
 
   const mouseMove = useCallback(
-    (ref: React.MutableRefObject<HTMLElement | any>, e: any) => {
+    (ref: React.RefObject<HTMLElement | any>, e: any) => {
       const { clientX, clientY } = e;
       const { height, width, left, top } = ref.current.getBoundingClientRect();
 
@@ -60,7 +60,7 @@ const Magnetize: React.FC<MagnetizeProps> = ({ children }) => {
     };
   }, [mouseLeave, mouseMove, toAxis]);
 
-  return React.cloneElement(children, { ref: magnetic });
+  return React.cloneElement(children, { ref: magnetic } as any);
 };
 
 export { Magnetize };
