@@ -1,6 +1,6 @@
 ## Getting Started
 
-Run the development server:
+Running the development server:
 
 ```bash
 pnpm dev

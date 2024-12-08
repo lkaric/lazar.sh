@@ -1,11 +1,5 @@
-import type { NextPage } from 'next';
+import { container } from './style.css';
 
-const Home: NextPage = () => {
-  return (
-    <main>
-      <h1>Under construction</h1>
-    </main>
-  );
-};
-
-export default Home;
+export default function Home() {
+  return <div className={container}>Lazar</div>;
+}

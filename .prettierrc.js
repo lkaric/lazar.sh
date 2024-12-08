@@ -1,10 +1,11 @@
-module.exports = {
+/**
+ * @see https://prettier.io/docs/en/configuration
+ * @type {import("prettier").Config}
+ */
+const config = {
+  trailingComma: 'all',
+  semi: true,
   singleQuote: true,
-  trailingComma: 'none',
-  arrowParens: 'avoid',
-  proseWrap: 'preserve',
-  quoteProps: 'as-needed',
-  bracketSameLine: false,
-  bracketSpacing: true,
-  tabWidth: 2
 };
+
+module.exports = config;
