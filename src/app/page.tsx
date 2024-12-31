@@ -1,5 +1,13 @@
-import { container } from './style.css';
+import { EmailShuffle } from '@/components';
 
-export default function Home() {
-  return <div className={container}>Lazar</div>;
-}
+import { homeMainStyle } from './style.css';
+
+const HomePage = () => {
+  return (
+    <main className={homeMainStyle}>
+      <EmailShuffle />
+    </main>
+  );
+};
+
+export default HomePage;

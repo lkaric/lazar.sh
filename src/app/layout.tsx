@@ -2,7 +2,11 @@ import { type Metadata } from 'next';
 import { Montserrat, Sometype_Mono } from 'next/font/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
+import { body, theme } from '@/style';
 import clsx from 'clsx';
+
+import '@/style/reset.css';
+import { Header } from '@/components';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -24,10 +28,10 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
-  const bodyClass = clsx(montserrat.className, sometype_mono.variable);
+  const bodyClass = clsx(montserrat.className, sometype_mono.variable, body);
 
   return (
-    <html lang="en">
+    <html lang="en" className={theme}>
       <head>
         <link
           rel="icon"
@@ -36,7 +40,10 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
           sizes="32x32"
         />
       </head>
-      <body className={bodyClass}>{children}</body>
+      <body className={bodyClass}>
+        <Header />
+        {children}
+      </body>
       <SpeedInsights />
       <Analytics />
     </html>
