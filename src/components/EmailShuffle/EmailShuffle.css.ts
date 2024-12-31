@@ -5,6 +5,7 @@ import { vars } from '@/style';
 const emailShuffleAnchorStyle = style({
   fontWeight: 500,
   fontSize: '3.6rem',
+  letterSpacing: '0.36rem',
 });
 
 const emailShuffleSecondaryStyle = style({
