@@ -4,13 +4,11 @@ import { style } from '@vanilla-extract/css';
 const headerStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  // border: '1px solid red',
   padding: '2rem',
   fontSize: '1.6rem',
   alignSelf: 'center',
   borderRadius: '4px',
   gap: '1rem',
-  // justifyContent: 'center',
 
   '@media': {
     '(min-width: 480px)': {
