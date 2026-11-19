@@ -67,8 +67,11 @@ jobs:
         id: preview
         if: env.CLOUDFLARE_API_TOKEN != ''
         run: |
-          set -o pipefail
-          url=$(pnpm exec wrangler preview --name "$PREVIEW_NAME" --json | jq -er '.preview.urls[0]')
+          if ! pnpm exec wrangler preview --name "$PREVIEW_NAME" --json > preview.json; then
+            cat preview.json
+            exit 1
+          fi
+          url=$(jq -er '.preview.urls[0]' preview.json) || { cat preview.json; exit 1; }
           echo "url=$url" >> "$GITHUB_OUTPUT"
           echo "Preview: $url" >> "$GITHUB_STEP_SUMMARY"
       - name: Comment preview URL
