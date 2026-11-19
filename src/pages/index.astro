@@ -1,0 +1,231 @@
+---
+import Base from '../layouts/Base.astro';
+
+const email = 'hi@lazar.sh';
+---
+
+<Base>
+  <canvas id="field" aria-hidden="true"></canvas>
+
+  <div class="frame">
+    <header class="row">
+      <div>
+        <p class="name">Lazar</p>
+        <p class="soft">Software engineer</p>
+      </div>
+      <div class="side">
+        <nav class="links" aria-label="Elsewhere">
+          <a
+            href="https://linkedin.com/in/lkaric/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/lkaric/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+        </nav>
+        <p class="soft place">
+          Belgrade <span id="clock"></span>
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <h1 id="headline" class="visually-hidden">
+        {email}
+      </h1>
+    </main>
+
+    <footer class="row bottom">
+      <p class="soft hint" id="hint">
+        Move to push. Hold to swirl. Click to copy.
+      </p>
+      <div class="contact">
+        <a class="address" id="address" href={`mailto:${email}`}>
+          {email}
+        </a>
+        <button class="copy" id="copy" type="button" data-email={email}>
+          Copy
+        </button>
+      </div>
+    </footer>
+    <p class="visually-hidden" id="status" role="status" aria-live="polite"></p>
+  </div>
+</Base>
+
+<script>
+  import '../scripts/contact';
+</script>
+
+<style>
+  #field {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+    cursor: crosshair;
+  }
+
+  .frame {
+    position: relative;
+    height: 100%;
+    padding: 20px max(20px, env(safe-area-inset-right, 0px)) 20px
+      max(20px, env(safe-area-inset-left, 0px));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px 24px;
+  }
+
+  .row.bottom {
+    align-items: flex-end;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .name {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.125rem;
+    letter-spacing: -0.01em;
+  }
+
+  .soft {
+    color: var(--ink-soft);
+  }
+
+  .side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+
+  .links {
+    display: flex;
+    gap: 20px;
+    pointer-events: auto;
+  }
+
+  .links a {
+    padding: 10px 0;
+    margin: -10px 0;
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    color: var(--heat);
+  }
+
+  .place {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hint {
+    max-width: 24rem;
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    pointer-events: auto;
+  }
+
+  .address {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 1.125rem;
+    text-decoration: none;
+  }
+
+  .address:hover {
+    color: var(--heat);
+  }
+
+  .copy {
+    font: inherit;
+    font-weight: 500;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--edge);
+    border-radius: 999px;
+    min-height: 44px;
+    padding: 0 20px;
+    cursor: pointer;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease,
+      border-color 160ms ease;
+  }
+
+  .copy:hover,
+  .copy.done {
+    background: var(--ink);
+    color: var(--field);
+    border-color: var(--ink);
+  }
+
+  a:focus-visible,
+  .copy:focus-visible {
+    outline: 2px solid var(--heat);
+    outline-offset: 3px;
+  }
+
+  /* Without WebGL the address is set as plain type in the middle of the screen. */
+  :global(.no-webgl) #field,
+  :global(.no-webgl) .hint {
+    display: none;
+  }
+
+  :global(.no-webgl) #headline {
+    position: fixed;
+    inset: 0;
+    width: auto;
+    height: auto;
+    clip-path: none;
+    white-space: normal;
+    display: grid;
+    place-items: center;
+    padding: 0 16px;
+    text-align: center;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2.5rem, 13vw, 11rem);
+    letter-spacing: -0.03em;
+    overflow-wrap: anywhere;
+    pointer-events: none;
+  }
+
+  @media (max-width: 560px) {
+    .row.bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .copy {
+      transition: none;
+    }
+  }
+</style>
