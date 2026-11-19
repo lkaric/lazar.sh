@@ -4,6 +4,7 @@
   "compatibility_date": "2026-11-01",
   "workers_dev": true,
   "preview_urls": true,
+  "previews": {},
   "routes": [
     { "pattern": "lazar.sh", "custom_domain": true },
     { "pattern": "www.lazar.sh", "custom_domain": true }
