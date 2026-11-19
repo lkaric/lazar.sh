@@ -71,7 +71,8 @@ jobs:
             cat preview.json
             exit 1
           fi
-          url=$(jq -er '.preview.urls[0]' preview.json) || { cat preview.json; exit 1; }
+          # Wrangler prints upload progress before the JSON document.
+          url=$(sed -n '/^{$/,$p' preview.json | jq -er '.preview.urls[0]') || { cat preview.json; exit 1; }
           echo "url=$url" >> "$GITHUB_OUTPUT"
           echo "Preview: $url" >> "$GITHUB_STEP_SUMMARY"
       - name: Comment preview URL
