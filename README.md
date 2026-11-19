@@ -32,9 +32,16 @@ commit message. Hooks are installed by `pnpm install`.
 ## Deployment
 
 The site is static and is served by Cloudflare from `dist/`, as described in
-`wrangler.jsonc`. Connect the repository in the Cloudflare dashboard with the
-build command `pnpm build` and the deploy command `npx wrangler deploy`, or
-run `pnpm deploy` locally after `wrangler login`.
+`wrangler.jsonc`. `.github/workflows/ci.yml` does the work:
+
+- Every pull request is linted, type checked and built, then published as a
+  Cloudflare preview named `pr-<number>`, with the URL posted as a comment.
+  The preview is deleted when the pull request closes.
+- Every push to `main` runs the same checks and then deploys to production.
+
+The workflow needs two repository secrets, `CLOUDFLARE_API_TOKEN` and
+`CLOUDFLARE_ACCOUNT_ID`. `pnpm deploy` does the same from a local machine
+after `wrangler login`.
 
 ## Structure
 
