@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   singleQuote: true,
   trailingComma: 'none',
   arrowParens: 'avoid',
@@ -6,5 +6,7 @@ module.exports = {
   quoteProps: 'as-needed',
   bracketSameLine: false,
   bracketSpacing: true,
-  tabWidth: 2
+  tabWidth: 2,
+  plugins: ['prettier-plugin-astro'],
+  overrides: [{ files: '*.astro', options: { parser: 'astro' } }]
 };

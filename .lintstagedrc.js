@@ -1,13 +1,8 @@
-module.exports = {
-  // Type check TypeScript files
-  '**/*.(ts|tsx)': () => 'npx tsc --noEmit',
+export default {
+  // Type check Astro and TypeScript files
+  '**/*.(ts|astro)': () => 'pnpm check',
 
-  // Lint & Prettify TS and JS files
-  '**/*.(ts|tsx|js)': filenames => [
-    `npx eslint ${filenames.join(' ')}`,
-    `npx prettier --write ${filenames.join(' ')}`
-  ],
-
-  // Prettify only Markdown and JSON files
-  '**/*.(md|json)': filenames => `npx prettier --write ${filenames.join(' ')}`
+  // Prettify source, Markdown and JSON files
+  '**/*.(ts|js|mjs|astro|css|md|json)': filenames =>
+    `prettier --write ${filenames.join(' ')}`
 };

@@ -1,9 +1,52 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  --field: #0e3b2f;
+  --grain: #f3f0d8;
+  --heat: #ff8fb7;
+  --ink: #f3f0d8;
+  --ink-soft: #a9cdbd;
+  --edge: rgba(243, 240, 216, 0.38);
+  --display: 'Syne', 'Arial Black', sans-serif;
+  --text:
+    'Montserrat Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: dark;
+}
 
-html {
-  min-width: 100vw;
-  min-height: 100vh;
-  font-family: var(--font-montserrat);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--field);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
