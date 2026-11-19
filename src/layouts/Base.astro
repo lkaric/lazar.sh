@@ -1,6 +1,4 @@
 ---
-import Analytics from '@vercel/analytics/astro';
-import SpeedInsights from '@vercel/speed-insights/astro';
 
 import '@fontsource/syne/latin-500.css';
 import '@fontsource/syne/latin-800.css';
@@ -28,7 +26,5 @@ const { title = 'lazar.sh', description = 'Personal cave' } = Astro.props;
   </head>
   <body>
     <slot />
-    <Analytics />
-    <SpeedInsights />
   </body>
 </html>

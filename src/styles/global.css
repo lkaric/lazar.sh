@@ -38,6 +38,7 @@ a {
 }
 
 [hidden] {
+  /* biome-ignore lint/complexity/noImportantStyles: hidden must beat component display rules */
   display: none !important;
 }
 

@@ -291,7 +291,9 @@ export class ParticleField {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'alphabetic';
     ctx.fillStyle = '#fff';
-    lines.forEach((line, j) => ctx.fillText(line, cw / 2, fs * 0.95 + j * lh));
+    for (const [j, line] of lines.entries()) {
+      ctx.fillText(line, cw / 2, fs * 0.95 + j * lh);
+    }
     const data = ctx.getImageData(0, 0, cw, ch).data;
     const inked = (x: number, y: number) => data[(y * cw + x) * 4 + 3] > 128;
 
